@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8" >
+<title>活动报名者管理-全选JS与表单弹窗JS</title>
+<meta  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"  name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="fans.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/common.js"></script>
+</head>
+<body>
+<div class="chua_content">
+     <header class="head_chtop">
+             <a href="javascript:history.back();" class="head_back"></a>
+             <span>活动报名者管理</span>
+     </header>
+     <div class="ch_mians">
+          <form id="applylistform" method="post" autocomplete="off" action="forum.php?mod=misc&amp;action=activityapplylist&amp;tid=45563&amp;applylistsubmit=yes&amp;infloat=yes">
+                <div class="ch_manabox">
+                     <input type="hidden" name="formhash" value="c9774f38">
+                     <input type="hidden" name="operation" id="operation" value="">
+                           <div class="c floatwrap">
+                                <table class="float_table folat_label" cellspacing="0" cellpadding="0" width="100%">
+                                <thead>
+                                       <tr>
+                                       <th width="9%">&nbsp;</th><th class="labe_one">申请者</th>
+                                       <th class="labe_two">真实姓名</th>
+                                       <th class="labe_three">手机号码</th>
+                                       </tr>
+                                </thead>
+                                </table>
+                                <div class="folat_label" id="folat_labelModel">
+                                     <label>
+                                           <input type="checkbox" name="applyidarray[]" class="pc pcyver" value="287">
+                                           <span class="labe_one">Che_zhaozhilun</span>
+                                           <span class="labe_two">赵志伦</span>
+                                           <span class="labe_three">--</span>
+                                     </label>
+                                     <label>
+                                           <input type="checkbox" name="applyidarray[]" class="pc pcyver" value="284">
+                                           <span class="labe_one">Che_luozhanwei</span>
+                                           <span class="labe_two">罗湛威 </span>
+                                           <span class="labe_three">--</span>
+                                     </label>
+                                     <label>
+                                           <input type="checkbox" name="applyidarray[]" class="pc pcyver" value="282">
+                                           <span class="labe_one">Che_louis</span>
+                                           <span class="labe_two">周诺毅 </span>
+                                           <span class="labe_three">--</span>
+                                     </label>
+                                </div>
+                                <div class="folat_more"><a href="javascript:void(0);" class="act_more" id="applylist_manage" data-pid="87730" data-id="45563" page="2" totalpage="7">加载更多</a></div>
+                           </div>
+                </div>
+                <div class="ch_pnscom">
+                     <label><input class="pc" type="checkbox" name="chkall" onclick="checkall(this.form, 'applyid')">全选 </label>
+                     <div class="ch_input">
+                          <button class="formdialog pnsc pn_btns" type="submit" value="true" id="applylistsubmit" name="applylistsubmit"><span>批准</span></button>
+                          <button class="formdialog pnsc" type="submit" value="true" id="applylistsubmit_delete" name="applylistsubmit"><span>拒绝</span></button>
+                     </div>
+                </div>
+          </form>
+     </div>
+</div>
+<script type="text/javascript">
+function checkall(form,prefix,checkall){
+  var checkall = checkall ? checkall : 'chkall';
+  count = 0;
+  for(var i = 0; i < form.elements.length; i++) {
+    var e = form.elements[i];
+    if(e.name && e.name != checkall && !e.disabled && (!prefix || (prefix && e.name.match(prefix)))) {
+      e.checked = form.elements[checkall].checked;
+      if(e.checked) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+</script>
+</body>
+</html>

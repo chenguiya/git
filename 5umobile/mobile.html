@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8" >
+<title>聊球WAP下载页(微信访问JS才能显示正常)</title>
+<meta  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"  name="viewport">
+<link href="images/wap/download/wap_wx.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="mob_main">
+     <div class="mob_content1">
+	      <p><img src="images/wap/download/wap_mobile1.png"/></p>
+		  <div class="mob_title">
+		      <img src="images/wap/download/wap_mobile2.png"></p>
+		  </div>
+		  <div class="box4_img box1_button">
+		       <a id="downloadBtn" class="btn btn-gray download-btn" href="images/wap/download/5usport_liaoqiu.0619.apk"><img src="images/wap/download/wap_button.png" width="180"/></a>		  </div>
+	 </div>
+	 <div class="mob_content2">
+	      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		         <tr>
+				     <td><img src="images/wap/download/wap_mobile3.png"></td>
+					 <td><img src="images/wap/download/wap_mobile3_1.png"></td>
+				 </tr>
+		  </table>
+
+	 </div>
+	 <div class="mob_content3">
+	      <h1><em>零距离</em>互动球星名人</h1>
+		  <div class="box2_tit">与球星名人连线零距离接触，文字、语音、图片、视频功能随你掌控，为你支持的球队摇旗呐喊，为你感兴趣的话题畅所欲言，为你喜欢的嘉宾主持加油点赞，看球怎会寂寞？</div>
+		  <div class="box3_img"><img src="images/wap/download/wap_mobile5.png"/></div>
+	 </div>
+	 <div class="mob_content4 cl">
+	      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		         <tr>
+				     <td><img src="images/wap/download/wap_mobile6.png"></td>
+					 <td><img src="images/wap/download/wap_mobile6_1.png"></td>
+				 </tr>
+		  </table>
+
+	 </div>
+	 <div class="mob_content5 cl">
+	       <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		         <tr>
+				     <td><img src="images/wap/download/wap_mobile7.png"></td>
+					 <td><img src="images/wap/download/wap_mobile7_1.png"></td>
+				 </tr>
+		  </table>
+	 </div>
+</div>
+	<div class="modal-backdrop">
+		 <div class="download-arrow"></div><div class="download-txt"></div>
+	</div>
+<script>
+    var isWeiXin = navigator.userAgent.toLowerCase().indexOf("micromessenger") != -1;
+    var bd = document.body;
+    var downloadBtn = document.getElementById("downloadBtn");
+    //在微信内打开详情页进行下载时，引导到浏览器打开
+    var guildDownload = function(e) {
+        if (isWeiXin) {
+            if(!document.getElementById("wxTip")) {
+                window.scrollTo(0, 0);
+                var dom = document.createElement("div");
+                dom.className = "modal-backdrop";
+                dom.id = "wxTip";
+                dom.innerHTML = '<div class="download-arrow"></div><div class="download-txt"></div>';
+                bd.appendChild(dom);
+                dom.addEventListener("touchstart", clearWxTip, false);
+                downloadBtn.classList.add("download-btn");
+            }
+            return false;
+        } else {
+            downloadBtn.classList.add("btn-gray");
+            downloadBtn.classList.remove("btn-green");
+            downloadBtn.innerHTML = "正在下载…";
+        }
+    };
+    function clearWxTip() {
+        var wxTip = document.getElementById("wxTip");
+        wxTip.removeEventListener("touchstart", clearWxTip, false);
+        bd.removeChild(wxTip);
+        downloadBtn.classList.remove("download-btn");
+        downloadBtn.onclick = guildDownload;
+    }
+    downloadBtn.onclick = guildDownload;
+
+    // 统计
+    var urlParam = location.search.substr(1); //获取url中search字段
+    if (urlParam.length != 0) {
+        urlParam = '&' + urlParam;
+    }
+    var urlParamEncode = encodeURIComponent(urlParam);
+    downloadBtn.href = downloadBtn.href + urlParam;
+</script>
+</body>
+</html>
+<?php exit(); ?>
